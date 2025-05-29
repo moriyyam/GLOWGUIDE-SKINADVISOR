@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire | GLOW GUIDE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <style>
+        :root {
+            --primary-color: #6a4c93;
+            --secondary-color: #f8a5d8;
+            --accent-color: #58b4ae;
+            --light-color: #f7f7f7;
+            --dark-color: #333333;
+            --text-color: #444444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-color);
+            padding-top: 80px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            text-decoration: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        /* Auth buttons  */
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+            margin-left: 30px;
+        }
+        
+        .auth-btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .auth-login {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .auth-signup {
+            background: var(--primary-color);
+            color: white;
+            border: 2px solid var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .auth-login:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .auth-signup:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+ 
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: rgb(247, 244, 244);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+            text-decoration: none;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary-color);
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+        
+        }
+        
+        .footer-links h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            color: white;
+        }
+        
+        .footer-links h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: rgba(255,255,255,0.7);
+            transition: color 0.3s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: white;
+        }
+        
+        .footer-newsletter p {
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .newsletter-form {
+            display: flex;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            outline: none;
+        }
+        
+        .newsletter-form button {
+            background: var(--secondary-color);
+            color: var(--dark-color);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 30px 30px 0;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .copyright a {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .auth-buttons {
+                margin: 15px 0 0 0;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .auth-btn {
+                width: 120px;
+                text-align: center;
+                padding: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .routine-header h1 {
+                font-size: 2rem;
+            }
+            
+            .routine-container {
+                padding: 25px;
+            }
+        }
+        /* Main heading */
+h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-top: 60px; /* space from the top */
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+h1:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+            margin: 15px auto;
+        }
+
+/* Form container */
+form {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 30px;
+    max-width: 700px;
+    margin: 0 auto 60px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* Each question block */
+.question-block {
+    margin-bottom: 35px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Last question block no border */
+.question-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Question title */
+.question-block h3 {
+    color: #000;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Label for options */
+.question-block label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1rem;
+    color: var(--dark-color);
+    cursor: pointer;
+    margin-bottom: 10px;
+    user-select: none;
+}
+
+/* Inputs (checkboxes/radios) */
+.question-block input[type="checkbox"],
+.question-block input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-color); /* modern browsers */
+    cursor: pointer;
+}
+
+/* Submit button */
+form button[type="submit"] {
+    display: block;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 30px auto 0;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(106, 76, 147, 0.3);
+}
+
+form button[type="submit"]:hover {
+    background-color: var(--accent-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    form {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    .question-block h3 {
+        font-size: 1.2rem;
+    }
+}
+
+    </style>
+      <header>
+        <div class="container header-container">
+            <a href="glowguide.html" class="logo">GLOW<span>GUIDE</span></a>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('questionnaire') }}">Skin Analysis</a></li>
+                    <li><a href="{{ url_for('feedback') }}">Feedback</a></li>
+                    <li class="auth-buttons">
+                        <a href="{{ url_for('login') }}" class="auth-btn auth-login">Login</a>
+                        <a href="{{ url_for('signup') }}" class="auth-btn auth-signup">Sign Up</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <body>
+  <h1>Personalized Skincare Questionnaire</h1>
+  <form method="POST" action="/questionnaire">
+    {% for question in questions %}
+      <div class="question-block">
+        <h3>{{ question.question_text }}</h3>
+        {% for option in question.options %}
+          <label>
+            <input 
+              type="{{ 'checkbox' if question.is_multi_select else 'radio' }}"
+              name="q{{ question.question_id }}{% if question.is_multi_select %}[]{% endif %}" 
+              value="{{ option.option_text }}">
+            {{ option.option_text }}
+          </label><br>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    <button type="submit">Submit</button>
+  </form>
+
+   <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <a href="glowguide.html" class="footer-logo">GLOW<span>GUIDE</span></a>
+                    <p>We provide personalized skin care recommendations based on scientific analysis of your unique skin type and concerns.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('questionnaire') }}">Skin Analysis</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Skin Concerns</h3>
+                    <ul>
+                        <li><a href="#">Acne</a></li>
+                        <li><a href="#">Aging</a></li>
+                        <li><a href="#">Dryness</a></li>
+                        <li><a href="#">Oiliness</a></li>
+                        <li><a href="#">Sensitivity</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get skin care tips and special offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email Address">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 GLOW GUIDE. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

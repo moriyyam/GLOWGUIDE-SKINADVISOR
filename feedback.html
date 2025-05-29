@@ -1,0 +1,481 @@
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashes">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routine Feedback | GLOW GUIDE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6a4c93;
+            --secondary-color: #f8a5d8;
+            --accent-color: #58b4ae;
+            --light-color: #f7f7f7;
+            --dark-color: #333333;
+            --text-color: #444444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-color);
+        }
+        
+        /* Main container */
+        .main-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* container for feedback form only */
+        .feedback-form-container {
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 80px 0 50px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+            padding: 20px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 600;
+            color: var(--dark-color);
+            text-decoration: none;
+        }
+        
+        /* Auth buttons */
+        .auth-btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .auth-login {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .auth-signup {
+            background: var(--primary-color);
+            color: white;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .auth-login:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .auth-signup:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        /* Feedback Section */
+        .feedback-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 40px;
+        }
+        
+        .feedback-title {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .feedback-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+            margin: 15px auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .form-group input[type="number"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .rating-scale {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary-color);
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+        }
+        
+        .footer-links h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            color: white;
+        }
+        
+        .footer-links h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: rgba(255,255,255,0.7);
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        
+        .footer-links ul li a:hover {
+            color: white;
+        }
+        
+        .footer-newsletter p {
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .newsletter-form {
+            display: flex;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            outline: none;
+        }
+        
+        .newsletter-form button {
+            background: var(--secondary-color);
+            color: var(--dark-color);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 30px 30px 0;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .copyright a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 15px;
+            }
+            
+            .feedback-container {
+                padding: 30px 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .feedback-title {
+                font-size: 1.8rem;
+            }
+            
+            .feedback-form-container {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="main-container">
+            <div class="header-content">
+                <a href="glowguide.html" class="logo">GLOW<span>GUIDE</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('questionnaire') }}">Skin Analysis</a></li>
+                        <li><a href="{{ url_for('feedback') }}">Feedback</a></li>
+                        <li><a href="{{ url_for('login') }}" class="auth-btn auth-login">Login</a></li>
+                        <li><a href="{{ url_for('signup') }}" class="auth-btn auth-signup">Sign Up</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Feedback Form -->
+    <main>
+        <div class="feedback-form-container">
+            <div class="feedback-container">
+                <h1 class="feedback-title">Submit Your Routine Feedback</h1>
+                <form action="/feedback" method="POST">
+                    <div class="form-group">
+                        <label for="rating">Overall Rating (1-5):</label>
+                        <input type="number" id="rating" name="rating" min="1" max="5" step="0.1" required>
+                        <div class="rating-scale">
+                            <span>1 - Poor</span>
+                            <span>5 - Excellent</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="effectiveness_score">Effectiveness Score (0 to 1):</label>
+                        <input type="number" id="effectiveness_score" name="effectiveness_score" min="0" max="1" step="0.1" required>
+                        <div class="rating-scale">
+                            <span>0 - Not Effective</span>
+                            <span>1 - Very Effective</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="satisfaction_score">Satisfaction Score (0 to 1):</label>
+                        <input type="number" id="satisfaction_score" name="satisfaction_score" min="0" max="1" step="0.1" required>
+                        <div class="rating-scale">
+                            <span>0 - Not Satisfied</span>
+                            <span>1 - Very Satisfied</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedback_text">Your Feedback:</label>
+                        <textarea id="feedback_text" name="feedback_text" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Submit Feedback</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="main-container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="{{ url_for('index') }}" class="footer-logo">GLOW<span>GUIDE</span></a>
+                    <p>We provide personalized skin care recommendations based on scientific analysis of your unique skin type and concerns.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('questionnaire') }}">Skin Analysis</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Skin Concerns</h3>
+                    <ul>
+                        <li><a href="#">Acne</a></li>
+                        <li><a href="#">Aging</a></li>
+                        <li><a href="#">Dryness</a></li>
+                        <li><a href="#">Oiliness</a></li>
+                        <li><a href="#">Sensitivity</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get skin care tips and special offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email Address">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 GLOW GUIDE. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

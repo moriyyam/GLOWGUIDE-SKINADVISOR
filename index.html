@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLOW GUIDE - Personalized Skin Care</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='skinad.css') }}">
+    <style>
+        :root {
+            --primary-color: #6a4c93;
+            --secondary-color: #f8a5d8;
+            --accent-color: #58b4ae;
+            --light-color: #f7f7f7;
+            --dark-color: #333333;
+            --text-color: #444444;
+        }
+        
+    </style>
+</head>
+<body>
+   
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="{{ url_for('index') }}" class="logo">GLOW<span>GUIDE</span></a>
+            <nav>
+        
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('questionnaire') }}">Skin Analysis</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="{{ url_for('feedback') }}">Feedback</a></li>
+                    <li class="auth-buttons">
+                    <a href="{{ url_for('login') }}" class="auth-btn auth-login">Login</a>
+                    <a href="{{ url_for('signup') }}" class="auth-btn auth-signup">Sign Up</a>
+                    </li>
+
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Discover Your <span>Perfect Skin</span> Routine</h1>
+                <p>Get personalized skin care recommendations based on scientific analysis of your unique skin type and concerns.</p>
+                <div class="hero-btns">
+                    <a href="{{ url_for('questionnaire') }}" class="btn">Start Skin Analysis</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Skin Analysis Section -->
+    <section class="skin-analysis">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            
+            <div class="analysis-container">
+                <div class="analysis-image">
+                    <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                </div>
+                
+                <div class="analysis-content">
+                    <h3>Simple 2-Step Skin Analysis</h3>
+                    <p>Our advanced technology makes it easy to understand your skin and get personalized recommendations.</p>
+                    
+                    <div class="analysis-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Answer Questions</h4>
+                                <p>Tell us about your skin concerns, current routine, and lifestyle factors.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Get Recommendations</h4>
+                                <p>Receive your personalized skin analysis and product suggestions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="{{ url_for('questionnaire') }}" class="btn">Start Your Analysis Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready for Healthier Skin?</h2>
+            <p>Join thousands of users who have transformed their skin with personalized recommendations from GLOW GUIDE.</p>
+            <a href="{{ url_for('questionnaire') }}" class="btn">Get Started Now</a>
+        </div>
+    </section>
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <a href="{{ url_for('index') }}" class="footer-logo">GLOW<span>GUIDE</span></a>
+                    <p>We provide personalized skin care recommendations based on scientific analysis of your unique skin type and concerns.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('index') }}">Glow Guide</a></li>
+                        <li><a href="{{ url_for('questionnaire') }}">Skin Analysis</a></li>
+                        <li><a href="product.html">Products</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Skin Concerns</h3>
+                    <ul>
+                        <li><a href="#">Acne</a></li>
+                        <li><a href="#">Aging</a></li>
+                        <li><a href="#">Dryness</a></li>
+                        <li><a href="#">Oiliness</a></li>
+                        <li><a href="#">Sensitivity</a></li>
+                        <li><a href="#">Hyperpigmentation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get skin care tips and special offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email Address">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 GLOW GUIDE. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Submitted</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6a4c93;
+            --secondary-color: #f8a5d8;
+            --accent-color: #58b4ae;
+            --light-color: #f7f7f7;
+            --dark-color: #333333;
+            --text-color: #444444;
+        }
+
+        /* Keep all your existing styles here */
+
+        /* Feedback Section Styles */
+        .feedback-section {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--light-color);
+        }
+
+        .feedback-content {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feedback-icon {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .feedback-message {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin: 20px 0 40px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Add to existing button styles */
+        .btn {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .feedback-section {
+                padding: 100px 20px 40px;
+            }
+            
+            .feedback-content {
+                padding: 30px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                gap: 15px;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="feedback-section">
+        <div class="container">
+            <div class="feedback-content">
+                <div class="feedback-icon">🎉</div>
+                <h2 class="section-title">Thank You!</h2>
+                <p class="feedback-message">Your feedback helps us improve our suggestions and create better experiences for you.</p>
+                
+                <div class="button-group">
+                    <a href="/index" class="btn">Home</a>
+                    <a href="/questionnaire" class="btn btn-secondary">Get New Routine</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
